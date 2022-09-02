@@ -10,7 +10,14 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!-- Text input fields -->
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
+        <!-- For radio buttons -->
+        <item name="radioButtonStyle">@style/Widget.CalculateTipApp.CompoundButton.RadioButton</item>
+        <!-- For switches -->
+        <item name="switchStyle">@style/Widget.CalculateTipApp.CompoundButton.Switch</item>
     </style>
 </resources>
