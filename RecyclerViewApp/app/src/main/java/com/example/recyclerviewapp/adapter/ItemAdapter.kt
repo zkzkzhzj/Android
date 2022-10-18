@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerviewapp.R
@@ -16,6 +17,7 @@ class ItemAdapter(private val context: Context, private val dataset: List<Affirm
     class ItemViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         // 뷰홀더에 매칭되어있는 텍스트뷰 연결
         val textView: TextView = view.findViewById(R.id.item_title)
+        val imageView: ImageView = view.findViewById(R.id.item_image)
     }
 
     // 뷰홀더 생성(레이아웃 연결 후 반환), 사용중인 뷰와 관련없는 레이아웃 반환시 nullPointException 발생
@@ -31,6 +33,7 @@ class ItemAdapter(private val context: Context, private val dataset: List<Affirm
         val item = dataset[position]
 
         holder.textView.text = context.resources.getString(item.stringResourceId)
+        holder.imageView.setImageResource(item.imageResourceId)
     }
 
     /*override fun getItemCount(): Int {
