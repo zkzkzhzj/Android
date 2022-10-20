@@ -77,6 +77,6 @@ class DogCardAdapter(
         holder.gridImage?.setImageResource(item.imageResourceId)
         holder.gridName?.text = item.name
         holder.gridAge?.text = resources?.getString(R.string.dog_age, item.age)
-        holder.gridHobby?.text = resources?.getString(R.string.dog_age, item.hobbies)
+        holder.gridHobby?.text = resources?.getString(R.string.dog_hobbies, item.hobbies)
     }
 }
