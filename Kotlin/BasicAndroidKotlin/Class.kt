@@ -2,15 +2,15 @@ import kotlin.math.PI
 import kotlin.math.sqrt
 
 /*
-ëª©í‘œ : í´ë˜ìŠ¤ ê³„ì¸µ êµ¬ì¡°ì— ëŒ€í•œ ì´í•´
-abstract(ì¶”ìƒ) í´ë˜ìŠ¤ì— ëŒ€í•œ ì´í•´ì™€ ì¸ìŠ¤í„´ìŠ¤í™” í•  ìˆ˜ ì—†ìŒ
-ì„œë¸Œ í´ë˜ìŠ¤ë¥¼ ë§Œë“œëŠ” ë°©ë²•
-ìƒìœ„ í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œë¥¼ ì¬ì •ì˜ í•˜ëŠ” ë²•(override)
-super í‚¤ì›Œë“œë¥¼ ì‚¬ìš©í•˜ì—¬ ìƒìœ„ í´ë˜ìŠ¤ë¥¼ ì°¸ì¡°
-open í‚¤ì›Œë“œ ì‚¬ìš©
-private ì‚¬ìš©í•˜ì—¬ ë²”ìœ„ ì§€ì •
-with êµ¬ë¬¸ì— ëŒ€í•œ ì´í•´
-kotlin ë¼ì´ë¸ŒëŸ¬ë¦¬ ê¸°ëŠ¥ ê°€ì ¸ì˜¤ê¸°(import)
+¸ñÇ¥ : Å¬·¡½º °èÃş ±¸Á¶¿¡ ´ëÇÑ ÀÌÇØ
+abstract(Ãß»ó) Å¬·¡½º¿¡ ´ëÇÑ ÀÌÇØ¿Í ÀÎ½ºÅÏ½ºÈ­ ÇÒ ¼ö ¾øÀ½
+¼­ºê Å¬·¡½º¸¦ ¸¸µå´Â ¹æ¹ı
+»óÀ§ Å¬·¡½ºÀÇ ¸Ş¼Òµå¸¦ ÀçÁ¤ÀÇ ÇÏ´Â ¹ı(override)
+super Å°¿öµå¸¦ »ç¿ëÇÏ¿© »óÀ§ Å¬·¡½º¸¦ ÂüÁ¶
+open Å°¿öµå »ç¿ë
+private »ç¿ëÇÏ¿© ¹üÀ§ ÁöÁ¤
+with ±¸¹®¿¡ ´ëÇÑ ÀÌÇØ
+kotlin ¶óÀÌºê·¯¸® ±â´É °¡Á®¿À±â(import)
 */
 
 fun main() {
@@ -23,9 +23,9 @@ fun main() {
     println("Material : ${squareCabin.buildingMaterial}")
     println("Has Room? : ${squareCabin.hasRoom()}")
     println("Floor area: ${floorArea()}")
-    with ë¥¼ ì‚¬ìš©í•˜ì—¬ ë‹¨ìˆœí™”
+    with ¸¦ »ç¿ëÇÏ¿© ´Ü¼øÈ­
 */
-// í•´ë‹¹ ì¸ìŠ¤í„´ìŠ¤ ê°ì²´ë¥¼ ì‚¬ìš©í•˜ì—¬ ëª¨ë‘ ì‹¤í–‰
+// ÇØ´ç ÀÎ½ºÅÏ½º °´Ã¼¸¦ »ç¿ëÇÏ¿© ¸ğµÎ ½ÇÇà
     with(squareCabin) {
         println("Square Carbin")
         println("Capacity : ${capacity}")
@@ -56,28 +56,27 @@ fun main() {
 }
 
 /* 
-ë¶€ëª¨ í´ë˜ìŠ¤, ìŠˆí¼ í´ë˜ìŠ¤ <-> ìì‹ í´ë˜ìŠ¤, ì„œë¸Œ í´ë˜ìŠ¤
-
-ì¶”ìƒ í´ë˜ìŠ¤ : ì™„ì „íˆ êµ¬í˜„ë˜ì§€ ì•Šì•„ ì¸ìŠ¤í„´ìŠ¤í™”í•  ìˆ˜ ì—†ëŠ” í´ë˜ìŠ¤(ìŠ¤ì¼€ì¹˜ ê°œë…)
+ºÎ¸ğ Å¬·¡½º, ½´ÆÛ Å¬·¡½º <-> ÀÚ½Ä Å¬·¡½º, ¼­ºê Å¬·¡½º
+Ãß»ó Å¬·¡½º : ¿ÏÀüÈ÷ ±¸ÇöµÇÁö ¾Ê¾Æ ÀÎ½ºÅÏ½ºÈ­ÇÒ ¼ö ¾ø´Â Å¬·¡½º(½ºÄÉÄ¡ °³³ä)
 */
-// ì¶”ìƒí´ë˜ìŠ¤
-// ì£¼ê±°ì§€(ì‹¤ì œ ì…ì£¼í•  ì£¼ë¯¼ ìˆ˜ - í•´ë‹¹ í´ë˜ìŠ¤ ë‚´ë¶€ì—ì„œë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆê²Œ private ì„¤ì •)
+// Ãß»óÅ¬·¡½º
+// ÁÖ°ÅÁö(½ÇÁ¦ ÀÔÁÖÇÒ ÁÖ¹Î ¼ö - ÇØ´ç Å¬·¡½º ³»ºÎ¿¡¼­¸¸ »ç¿ëÇÒ ¼ö ÀÖ°Ô private ¼³Á¤)
 abstract class Dwelling(private var residents: Int) {
-    // ê°’ì„ ì§€ì •í•  ìˆ˜ ì—†ê¸° ë•Œë¬¸ì— abstract ì„¤ì •
-    // ê±´ì¶•ì¬ë£Œ
+    // °ªÀ» ÁöÁ¤ÇÒ ¼ö ¾ø±â ¶§¹®¿¡ abstract ¼³Á¤
+    // °ÇÃàÀç·á
     abstract val buildingMaterial: String
-    // ìˆ˜ìš©ê°€ëŠ¥í•œ ì¸ì› ìˆ˜
+    // ¼ö¿ë°¡´ÉÇÑ ÀÎ¿ø ¼ö
     abstract val capacity: Int
 
-    // ì…ì£¼ê°€ëŠ¥í•œì§€ ì—¬ë¶€
+    // ÀÔÁÖ°¡´ÉÇÑÁö ¿©ºÎ
     fun hasRoom(): Boolean {
         return residents < capacity
     }
 
-    // ë©´ì  ê³„ì‚°
+    // ¸éÀû °è»ê
     abstract fun floorArea(): Double
 
-    // ì…ì£¼ì ì¶”ê°€
+    // ÀÔÁÖÀÚ Ãß°¡
     fun getRoom() {
         if(capacity > residents) {
             residents++
@@ -88,7 +87,7 @@ abstract class Dwelling(private var residents: Int) {
     }
 }
 
-// ì§€ì—­ ë“±ë¡ (ì…ì£¼ì ìˆ˜ë¥¼ ë°›ì•„ì™€ ìŠˆí¼í´ë˜ìŠ¤ì— ì „ì†¡)
+// Áö¿ª µî·Ï (ÀÔÁÖÀÚ ¼ö¸¦ ¹Ş¾Æ¿Í ½´ÆÛÅ¬·¡½º¿¡ Àü¼Û)
 class SquareCabin(residents: Int, val length: Double): Dwelling(residents) {
     override val buildingMaterial = "Wood"
     override val capacity = 6
@@ -97,7 +96,7 @@ class SquareCabin(residents: Int, val length: Double): Dwelling(residents) {
         return length* length
     }
 }
-// ì½”í‹€ë¦°ì—ì„  ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ ìŠˆí¼ í´ë˜ìŠ¤ë¡œ ë‘˜ìˆ˜ê°€ ì—†ê¸° ë•Œë¬¸ì— abstract í‚¤ì›Œë“œë‚˜ open í‚¤ì›Œë“œë¥¼ ì‚¬ìš©
+// ÄÚÆ²¸°¿¡¼± ±âº» Å¬·¡½º¸¦ ½´ÆÛ Å¬·¡½º·Î µÑ¼ö°¡ ¾ø±â ¶§¹®¿¡ abstract Å°¿öµå³ª open Å°¿öµå¸¦ »ç¿ë
 open class RoundHut(residents: Int, val radius: Double) : Dwelling(residents) {
     override val buildingMaterial = "Straw"
     override val capacity = 4
@@ -116,7 +115,7 @@ class RoundTower(residents: Int, radius: Double, val floors: Int = 2) : RoundHut
     override val capacity = floors * 4
 
     override fun floorArea(): Double {
-        // return PI * radius * radius * floors ë¶€ëª¨ ë©”ì†Œë“œë¥¼ ê°€ì ¸ì™€ ì‘ì—… ê°€ëŠ¥
+        // return PI * radius * radius * floors ºÎ¸ğ ¸Ş¼Òµå¸¦ °¡Á®¿Í ÀÛ¾÷ °¡´É
         return super.floorArea() * floors
     }
 }
