@@ -15,7 +15,6 @@
  */
 package com.example.wordsapp
 
-import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +22,7 @@ import android.view.ViewGroup
 import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Button
 import androidx.annotation.RequiresApi
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -37,8 +37,8 @@ class LetterAdapter :
     /**
      * Provides a reference for the views needed to display items in your list.
      */
-    class LetterViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val button = view.findViewById<Button>(R.id.button_item)
+    class LetterViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+        val button: Button = view.findViewById<Button>(R.id.button_item)
     }
 
     override fun getItemCount(): Int {
@@ -64,11 +64,13 @@ class LetterAdapter :
         val item = list.get(position)
         // A~Z까지 리스트 버튼을 각 만들고 클릭시 DetailActivity 로 text 와 함께 넘어가게 설정(명시적 인텐트)
         holder.button.text = item.toString()
+
         holder.button.setOnClickListener {
-            val context = holder.itemView.context
-            val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.LETTER, holder.button.text.toString())
-            context.startActivity(intent)
+            // letter 객체가 없음에도 되는 이유는 nav_graph 에서 해당 argument 를 받겠다고 선언해두어 사용할 수 있다
+            val action = LetterListFragmentDirections
+                .actionLetterListFragmentToWordListFragment(letter = holder.button.text.toString())
+
+            holder.itemView.findNavController().navigate(action)
         }
     }
 

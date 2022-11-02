@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app-starter\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\zkzkz\\.gradle\\caches\\transforms-3\\3b2c9c620de09f2890ea53d7ec68fa11\\transformed\\jetified-savedstate-1.1.0\\res\\values\\values.xml",
@@ -76,39 +76,37 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app-starter\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app\\app\\src\\main\\res\\values\\dimens.xml",
                     "from": {
-                        "startLines": "17,18,20,19,21",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "651,704,870,759,910",
-                        "endColumns": "52,54,39,110,71",
-                        "endOffsets": "699,754,905,865,977"
+                        "startLines": "19,18,22,17,21,20",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "780,735,921,688,874,826",
+                        "endColumns": "45,44,43,46,46,47",
+                        "endOffsets": "821,775,960,730,916,869"
                     },
                     "to": {
-                        "startLines": "1195,1204,1273,1274,1275",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "69187,70184,81218,81258,81369",
-                        "endColumns": "52,54,39,110,71",
-                        "endOffsets": "69235,70234,81253,81364,81436"
+                        "startLines": "680,681,693,695,758,794",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "36395,36441,37199,37293,41540,44020",
+                        "endColumns": "45,44,43,46,46,47",
+                        "endOffsets": "36436,36481,37238,37335,41582,44063"
                     }
                 },
                 {
-                    "source": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app-starter\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
-                        "startLines": "19",
-                        "startColumns": "4",
-                        "startOffsets": "689",
-                        "endLines": "24",
-                        "endColumns": "12",
-                        "endOffsets": "1031"
+                        "startLines": "17,18,19,21,22,20",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "689,737,793,883,923,843",
+                        "endColumns": "47,55,49,39,40,39",
+                        "endOffsets": "732,788,838,918,959,878"
                     },
                     "to": {
-                        "startLines": "1293",
-                        "startColumns": "4",
-                        "startOffsets": "82650",
-                        "endLines": "1298",
-                        "endColumns": "12",
-                        "endOffsets": "82992"
+                        "startLines": "504,505,506,550,551,596",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "24680,24728,24784,27803,27843,30794",
+                        "endColumns": "47,55,49,39,40,39",
+                        "endOffsets": "24723,24779,24829,27838,27879,30829"
                     }
                 },
                 {
@@ -126,6 +124,23 @@
                         "startOffsets": "62737,62794,64188",
                         "endColumns": "56,42,40",
                         "endOffsets": "62789,62832,64224"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "17,18,20,19,21",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "651,704,870,759,910",
+                        "endColumns": "52,54,39,110,71",
+                        "endOffsets": "699,754,905,865,977"
+                    },
+                    "to": {
+                        "startLines": "1195,1204,1273,1274,1275",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "69187,70184,81218,81258,81369",
+                        "endColumns": "52,54,39,110,71",
+                        "endOffsets": "69235,70234,81253,81364,81436"
                     }
                 },
                 {
@@ -181,23 +196,6 @@
                         "startOffsets": "61750,61790,62837,63019,63074,64611,64665,64717,64766,64827",
                         "endColumns": "39,46,42,54,46,53,51,48,60,49",
                         "endOffsets": "61785,61832,62875,63069,63116,64660,64712,64761,64822,64872"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app-starter\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "17,18,19,21,22,20",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "689,737,793,883,923,843",
-                        "endColumns": "47,55,49,39,40,39",
-                        "endOffsets": "732,788,838,918,959,878"
-                    },
-                    "to": {
-                        "startLines": "504,505,506,550,551,596",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "24680,24728,24784,27803,27843,30794",
-                        "endColumns": "47,55,49,39,40,39",
-                        "endOffsets": "24723,24779,24829,27838,27879,30829"
                     }
                 },
                 {
@@ -313,20 +311,22 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app-starter\\app\\src\\main\\res\\values\\dimens.xml",
+                    "source": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
-                        "startLines": "19,18,22,17,21,20",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "780,735,921,688,874,826",
-                        "endColumns": "45,44,43,46,46,47",
-                        "endOffsets": "821,775,960,730,916,869"
+                        "startLines": "19",
+                        "startColumns": "4",
+                        "startOffsets": "689",
+                        "endLines": "24",
+                        "endColumns": "12",
+                        "endOffsets": "1031"
                     },
                     "to": {
-                        "startLines": "680,681,693,695,758,794",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "36395,36441,37199,37293,41540,44020",
-                        "endColumns": "45,44,43,46,46,47",
-                        "endOffsets": "36436,36481,37238,37335,41582,44063"
+                        "startLines": "1293",
+                        "startColumns": "4",
+                        "startOffsets": "82650",
+                        "endLines": "1298",
+                        "endColumns": "12",
+                        "endOffsets": "82992"
                     }
                 },
                 {

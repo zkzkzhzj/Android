@@ -18,8 +18,13 @@ package com.example.wordsapp
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,71 +34,28 @@ import com.example.wordsapp.databinding.ActivityMainBinding
  * Main Activity and entry point for the app. Displays a RecyclerView of letters.
  */
 class MainActivity : AppCompatActivity() {
-    private lateinit var recyclerView: RecyclerView
-
-    // 왼쪽 상단의 메뉴바 상태
-    private var isLinearLayoutManager = true
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        recyclerView = binding.recyclerView
-        // Sets the LinearLayoutManager of the recyclerview
-        //recyclerView.layoutManager = LinearLayoutManager(this)
-        //recyclerView.adapter = LetterAdapter()
-        // 아래 메소드에서 위 기능 모두 실행
-        chooseLayout()
+        // 프래그먼트 불러오기
+        val navHostFragment = supportFragmentManager
+                // 타입 NavHostFragment 로 캐스팅
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        // 메인액티비티에서 프래그먼트
+        // navigation 컨트롤러 세팅
+        navController = navHostFragment.navController
+        // navController 전달
+        setupActionBarWithNavController(navController)
     }
 
-    // 메뉴 세팅
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.layout_menu, menu)
-
-        // 메뉴가 비어있지 않다면 해당 id 가져온다
-        val layoutButton = menu?.findItem(R.id.action_switch_layout)
-        setIcon(layoutButton)
-        return true
-    }
-
-    // 메뉴 선택
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            // 우리가 만든 item 메뉴를 선택했다면
-            R.id.action_switch_layout -> {
-                // 현재 레이아웃의 반대로 세팅
-                isLinearLayoutManager = !isLinearLayoutManager
-                chooseLayout()
-                setIcon(item)
-
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    // 레이아웃 선택
-    private fun chooseLayout() {
-        if(isLinearLayoutManager) {
-            recyclerView.layoutManager = LinearLayoutManager(this)
-        } else {
-            recyclerView.layoutManager = GridLayoutManager(this, 4)
-        }
-
-        recyclerView.adapter = LetterAdapter()
-    }
-
-    private fun setIcon(menuItem: MenuItem?) {
-        if(menuItem == null)
-            return
-
-        // 레이아웃에 따라 아이콘 변경
-        menuItem.icon =
-            if(isLinearLayoutManager)
-                ContextCompat.getDrawable(this, R.drawable.ic_grid_layout)
-            else
-                ContextCompat.getDrawable(this, R.drawable.ic_linear_layout)
+    // 뒤로가기 버튼 처리
+    override fun onSupportNavigateUp(): Boolean {
+        // navController.navigateUp() 메소드가 true 를 리턴하면 해당 메소드 실행, false 일 경우 super 호출 _ ||연산자
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

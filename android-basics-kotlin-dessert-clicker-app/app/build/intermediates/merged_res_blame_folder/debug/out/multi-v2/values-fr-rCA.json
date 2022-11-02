@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app-starter\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-fr-rCA\\values-fr-rCA.xml",
+            "outputFile": "C:\\Users\\zkzkz\\AndroidStudioProjects\\Android_Basics_in_Kotlin\\android-basics-kotlin-dessert-clicker-app\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-fr-rCA\\values-fr-rCA.xml",
             "map": [
                 {
                     "source": "C:\\Users\\zkzkz\\.gradle\\caches\\transforms-3\\809ddce9e66ca99403b9a3e2d0b9af39\\transformed\\core-1.5.0\\res\\values-fr-rCA\\values-fr-rCA.xml",
