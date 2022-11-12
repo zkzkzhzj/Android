@@ -17,7 +17,9 @@
 package com.example.android.unscramble
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.android.unscramble.ui.game.GameFragment
 
 /**
  * Creates an Activity that hosts the Game fragment in the app
@@ -27,5 +29,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+        Log.d(GameFragment.TAG, "MainActivity create")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(GameFragment.TAG, "MainActivity restart")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(GameFragment.TAG, "MainActivity destroy")
     }
 }

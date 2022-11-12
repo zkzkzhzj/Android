@@ -45,6 +45,7 @@ class GameViewModel : ViewModel() {
     }
 
     // 뷰 모델 삭제
+    // 해당 변수 내부에 초기화 메소드를 추가로 두어 메모리 누수 방지를 할 수 있을 듯 하다
     override fun onCleared() {
         super.onCleared()
         Log.d(GameFragment.TAG, "GameViewModel destroy")
@@ -66,9 +67,6 @@ class GameViewModel : ViewModel() {
     private fun getNextWord() {
         // 단어 리스트중 유저가 추측할 단어를 가져옴
         currentWord = allWordsList.random()
-        Log.d("GameFragment", currentWord)
-        Log.d("GameFragment", allWordsList.random())
-        Log.d("GameFragment", allWordsList.random())
         // 해당 단어를 섞기 위해서 CharArray 로 캐스팅
         val tempWord = currentWord.toCharArray()
         // 단어를 섞음

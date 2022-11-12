@@ -10,7 +10,7 @@
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and 
+ * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 
@@ -45,7 +45,9 @@ class GameFragment : Fragment() {
      */
     private val viewModel: GameViewModel by viewModels()
 
-    private lateinit var binding: GameFragmentBinding
+    private var _binding: GameFragmentBinding? = null
+    private val binding
+        get() = _binding!!
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +57,8 @@ class GameFragment : Fragment() {
         /*
         ViewBinding -> GameFragmentBinding 이지만 DataBinding 으로 읺여 변경
          */
-        binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container, false)
+        _binding = GameFragmentBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container, false)
         Log.d(TAG, "GameFragment created/re-created")
         return binding.root
     }
