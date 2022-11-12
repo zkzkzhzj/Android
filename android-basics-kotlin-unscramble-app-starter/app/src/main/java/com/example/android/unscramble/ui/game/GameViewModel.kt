@@ -12,16 +12,20 @@ import androidx.lifecycle.ViewModel
 class GameViewModel : ViewModel() {
     // 유저 점수, 변경되는 값이기 때문에 LiveData 대신 MutableLiveData 사용
     private val _score = MutableLiveData(0)
+
     // 변경하지 못하게 하기 위하여 LiveData 사용
     val score: LiveData<Int>
         get() = _score
+
     // 푼 문제 확인
     private val _currentWordCount = MutableLiveData(0)
     val currentWordCount: LiveData<Int>
         get() = _currentWordCount
+
     // 내부에서 수정할 수 있게 private var
     // LiveData 로 지정
-    private val _currentScrambledWord =  MutableLiveData<String>()
+    private val _currentScrambledWord = MutableLiveData<String>()
+
     // 외부에서는 접근만 가능하도록 val
     // 유저가 Talkback 기능으로 플레이할 수 있도록 변수 생성
     val currentScrambledWord: LiveData<Spannable> = Transformations.map(_currentScrambledWord) {
@@ -40,8 +44,15 @@ class GameViewModel : ViewModel() {
         }
     }
 
+    // 뷰 모델 삭제
+    override fun onCleared() {
+        super.onCleared()
+        Log.d(GameFragment.TAG, "GameViewModel destroy")
+    }
+
     // 게임에서 사용한 단어의 목록(사용한 단어를 저장하여 중복 단어가 나오지 않도록 관리)
     private var wordsList: MutableList<String> = mutableListOf()
+
     // 유저가 추측해야 할 단어(추후에 초기화)
     private lateinit var currentWord: String
 
@@ -49,12 +60,6 @@ class GameViewModel : ViewModel() {
     init {
         Log.d(GameFragment.TAG, "GameViewModel created")
         getNextWord()
-    }
-
-    // 뷰 모델 삭제
-    override fun onCleared() {
-        super.onCleared()
-        Log.d(GameFragment.TAG, "GameViewModel destroy")
     }
 
     // 다음 단어 함수
@@ -69,11 +74,11 @@ class GameViewModel : ViewModel() {
         // 단어를 섞음
         tempWord.shuffle()
         // 단어를 섞었지만 같은 배열이 나오는 것을 방지하여 체크 (test -> test 나올경우)
-        while (String(tempWord).equals(currentWord, false)){
+        while (String(tempWord).equals(currentWord, false)) {
             tempWord.shuffle()
         }
         // 해당 단어가 이미 사용되었는지 확인
-        if(wordsList.contains(currentWord)) {
+        if (wordsList.contains(currentWord)) {
             getNextWord()
         } else {
             // LiveData 데이터에 접근을 하기 위하여 value 지정
@@ -102,7 +107,7 @@ class GameViewModel : ViewModel() {
     // 유저가 정답을 맞추었는지 확인
     fun isUserWordCorrect(playerWord: String): Boolean {
         // 유저가 작성한 정답이 문제와 동일하다면 점수 증가
-        if(playerWord.equals(currentWord, true)) {
+        if (playerWord.equals(currentWord, true)) {
             increaseScore()
             return true
         }
