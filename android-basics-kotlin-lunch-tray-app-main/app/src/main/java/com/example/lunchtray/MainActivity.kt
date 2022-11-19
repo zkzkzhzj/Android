@@ -20,6 +20,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import com.example.lunchtray.databinding.ActivityMainBinding
 
+/*
+ * 사용자는 메인 요리, 사이드 메뉴, 디저트를 선택하여 주문
+ * 해당 주문 메뉴에 따른 금액 산정
+ */
+
 class MainActivity : AppCompatActivity() {
 
     // Binding object instance corresponding to the activity_main.xml layout

@@ -24,42 +24,42 @@ import java.text.NumberFormat
 
 class OrderViewModel : ViewModel() {
 
-    // Map of menu items
+    // 메뉴 아이템
     val menuItems = DataSource.menuItems
 
-    // Default values for item prices
+    // 메인메뉴, 사이드메뉴, 디저트 각각에 대한 총합계 저장
     private var previousEntreePrice = 0.0
     private var previousSidePrice = 0.0
     private var previousAccompanimentPrice = 0.0
 
-    // Default tax rate
+    // 세율(고정값)
     private val taxRate = 0.08
 
-    // Entree for the order
+    // 메인메뉴 선택 항목 저장을 위한 변수
     private val _entree = MutableLiveData<MenuItem?>()
     val entree: LiveData<MenuItem?> = _entree
 
-    // Side for the order
+    // 사이드메뉴 선택 항목 저장
     private val _side = MutableLiveData<MenuItem?>()
     val side: LiveData<MenuItem?> = _side
 
-    // Accompaniment for the order.
+    // 디저트 선택 항목 저장
     private val _accompaniment = MutableLiveData<MenuItem?>()
     val accompaniment: LiveData<MenuItem?> = _accompaniment
 
-    // Subtotal for the order
+    // 음식값
     private val _subtotal = MutableLiveData(0.0)
     val subtotal: LiveData<String> = Transformations.map(_subtotal) {
         NumberFormat.getCurrencyInstance().format(it)
     }
 
-    // Total cost of the order
+    // 총계(음식값 + 세금)
     private val _total = MutableLiveData(0.0)
     val total: LiveData<String> = Transformations.map(_total) {
         NumberFormat.getCurrencyInstance().format(it)
     }
 
-    // Tax for the order
+    // 세금
     private val _tax = MutableLiveData(0.0)
     val tax: LiveData<String> = Transformations.map(_tax) {
         NumberFormat.getCurrencyInstance().format(it)
