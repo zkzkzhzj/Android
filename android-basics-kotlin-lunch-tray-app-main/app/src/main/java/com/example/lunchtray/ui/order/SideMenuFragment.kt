@@ -81,6 +81,7 @@ class SideMenuFragment : Fragment() {
     fun cancelOrder() {
         // TODO: Reset order in view model
         // Navigate back to the [StartFragment] to start over
+        sharedViewModel.resetOrder()
         findNavController().navigate(R.id.action_sideMenuFragment_to_startOrderFragment)
     }
 

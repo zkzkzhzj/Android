@@ -67,6 +67,7 @@ class CheckoutFragment : Fragment() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             // initialize the OrderViewModel and CheckoutFragment variables
+            viewModel = sharedViewModel
             checkoutFragment = this@CheckoutFragment
         }
     }
@@ -75,8 +76,9 @@ class CheckoutFragment : Fragment() {
      * Cancel the order and start over.
      */
     fun cancelOrder() {
-        // TODO: Reset order in view model
+        // Reset order in view model
         // Navigate back to the [StartFragment] to start over
+        sharedViewModel.resetOrder()
         findNavController().navigate(R.id.action_checkoutFragment_to_startOrderFragment)
     }
 
@@ -86,8 +88,9 @@ class CheckoutFragment : Fragment() {
     fun submitOrder() {
         // Show snackbar to "confirm" order
         Snackbar.make(binding.root, R.string.submit_order, Snackbar.LENGTH_SHORT).show()
-        // TODO: Reset order in view model
+        // Reset order in view model
         // Navigate back to the [StartFragment] to start over
+        sharedViewModel.resetOrder()
         findNavController().navigate(R.id.action_checkoutFragment_to_startOrderFragment)
     }
 

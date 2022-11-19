@@ -27,7 +27,7 @@ class OrderViewModel : ViewModel() {
     // 메뉴 아이템
     val menuItems = DataSource.menuItems
 
-    // 메인메뉴, 사이드메뉴, 디저트 각각에 대한 총합계 저장
+    // 메인메뉴, 사이드메뉴, 디저트 각각 금액 저장
     private var previousEntreePrice = 0.0
     private var previousSidePrice = 0.0
     private var previousAccompanimentPrice = 0.0
@@ -69,68 +69,92 @@ class OrderViewModel : ViewModel() {
      * Set the entree for the order.
      */
     fun setEntree(entree: String) {
-        // TODO: if _entree.value is not null, set the previous entree price to the current
-        //  entree price.
+        // 메인 메뉴를 선택한 후 변경이 있을 경우 저장된 값을 뺴줌
+        _subtotal.value = _subtotal.value?.minus(previousEntreePrice)
 
-        // TODO: if _subtotal.value is not null subtract the previous entree price from the current
-        //  subtotal value. This ensures that we only charge for the currently selected entree.
-
-        // TODO: set the current entree value to the menu item corresponding to the passed in string
-        // TODO: update the subtotal to reflect the price of the selected entree.
+        // 메인 메뉴를 선택한 후 변경할 경우 값을 초기화 해주기 위해 저장
+        previousEntreePrice = _entree.value?.price ?: 0.0
+        // 선택한 메뉴 저장
+        _entree.value = menuItems[entree]
+        // 금액 계산을 위하여 price 인수 전달
+        _entree.value?.price?.let { updateSubtotal(it) }
     }
 
     /**
      * Set the side for the order.
      */
     fun setSide(side: String) {
-        // TODO: if _side.value is not null, set the previous side price to the current side price.
+        // if _side.value is not null, set the previous side price to the current side price.
+        previousSidePrice = _side.value?.price ?: 0.0
 
-        // TODO: if _subtotal.value is not null subtract the previous side price from the current
-        //  subtotal value. This ensures that we only charge for the currently selected side.
+        // if _subtotal.value is not null subtract the previous side price from the current
+        // subtotal value. This ensures that we only charge for the currently selected side.
+        _subtotal.value = _subtotal.value?.minus(previousSidePrice)
 
-        // TODO: set the current side value to the menu item corresponding to the passed in string
-        // TODO: update the subtotal to reflect the price of the selected side.
+        // set the current side value to the menu item corresponding to the passed in string
+        _side.value = menuItems[side]
+        // update the subtotal to reflect the price of the selected side.
+        _side.value?.price?.let { updateSubtotal(it) }
     }
 
     /**
      * Set the accompaniment for the order.
      */
     fun setAccompaniment(accompaniment: String) {
-        // TODO: if _accompaniment.value is not null, set the previous accompaniment price to the
-        //  current accompaniment price.
+        previousAccompanimentPrice = _accompaniment.value?.price ?: 0.0
 
-        // TODO: if _accompaniment.value is not null subtract the previous accompaniment price from
-        //  the current subtotal value. This ensures that we only charge for the currently selected
-        //  accompaniment.
+        _subtotal.value = _subtotal.value?.minus(previousAccompanimentPrice)
 
-        // TODO: set the current accompaniment value to the menu item corresponding to the passed in
-        //  string
-        // TODO: update the subtotal to reflect the price of the selected accompaniment.
+        _accompaniment.value = menuItems[accompaniment]
+        _accompaniment.value?.price?.let { updateSubtotal(it) }
     }
 
     /**
      * Update subtotal value.
      */
     private fun updateSubtotal(itemPrice: Double) {
-        // TODO: if _subtotal.value is not null, update it to reflect the price of the recently
-        //  added item.
-        //  Otherwise, set _subtotal.value to equal the price of the item.
+        // subtotal 값이 존재한다면 전달받은 값을 합산해주고 없다면 새롭게 세팅
+        _subtotal.value = _subtotal.value?.plus(itemPrice) ?: itemPrice
 
-        // TODO: calculate the tax and resulting total
+        // 세금까지 합한 총 금액 구하기
+        calculateTaxAndTotal()
     }
 
     /**
      * Calculate tax and update total.
      */
     fun calculateTaxAndTotal() {
-        // TODO: set _tax.value based on the subtotal and the tax rate.
-        // TODO: set the total based on the subtotal and _tax.value.
+        // _subtotal 값에 세율을 곱하여 세금 계산
+        _tax.value = _subtotal.value?.times(taxRate)
+        // _subtotal + _tax.value 값을 구하여 세금까지 더해진 총 금액 계산
+        _total.value = _tax.value?.let { _subtotal.value?.plus(it) }
     }
+/*
+    private fun onSelectMenu(mld: MutableLiveData<MenuItem?>, menuName: String) {
+        val previousSelectedMenuPrice = mld.value?.price ?: 0.0
+        _subtotal.value = _subtotal.value?.minus(previousSelectedMenuPrice)
+
+        val targetMenuItem = menuItems[menuName]
+        mld.value = targetMenuItem
+        updateSubtotal(targetMenuItem?.price ?: 0.0)
+    }
+*/
 
     /**
      * Reset all values pertaining to the order.
      */
     fun resetOrder() {
-        // TODO: Reset all values associated with an order
+        // 초기화
+        apply {
+            this.previousEntreePrice = 0.0
+            this.previousSidePrice = 0.0
+            this.previousAccompanimentPrice = 0.0
+            this._entree.value = null
+            this._side.value = null
+            this._accompaniment.value = null
+            this._subtotal.value = 0.0
+            this._total.value = 0.0
+            this._tax.value = 0.0
+        }
     }
 }

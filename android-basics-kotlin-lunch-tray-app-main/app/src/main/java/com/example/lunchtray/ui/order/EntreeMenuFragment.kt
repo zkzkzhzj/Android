@@ -78,9 +78,10 @@ class EntreeMenuFragment : Fragment() {
      * Cancel the order and start over.
      */
     fun cancelOrder() {
-        // TODO: Reset order in view model
+        // Reset order in view model
         // Navigate back to the [StartFragment] to start over
         findNavController().navigate(R.id.action_entreeMenuFragment_to_startOrderFragment)
+        sharedViewModel.resetOrder()
     }
 
     /**
