@@ -21,7 +21,14 @@
     android:id="@+id/layout_checkout"
     tools:context=".ui.order.CheckoutFragment">
 
-    <!-- TODO: Add the data binding variables of the type OrderViewModel and the CheckoutFragment -->
+    <!-- Add the data binding variables of the type OrderViewModel and the CheckoutFragment -->
+    <data>
+
+
+        <variable
+            name="checkoutFragment"
+            type="com.example.lunchtray.ui.order.CheckoutFragment" />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -123,7 +130,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tax"
                 tools:text="Total: $10.73"/>
 
-            <!-- TODO: submit the order when clicked -->
+            <!-- submit the order when clicked -->
             <Button
                 android:id="@+id/submit_button"
                 android:layout_width="match_parent"
@@ -132,9 +139,10 @@
                 android:text="@string/submit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/total"/>
+                app:layout_constraintTop_toBottomOf="@id/total"
+                android:onClick="@{() -> checkoutFragment.submitOrder()}" />
 
-            <!-- TODO: cancel the order when clicked -->
+            <!-- cancel the order when clicked -->
             <Button
                 android:id="@+id/cancel_button"
                 style="?attr/materialButtonOutlinedStyle"
@@ -144,7 +152,8 @@
                 android:text="@string/cancel"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/submit_button"/>
+                app:layout_constraintTop_toBottomOf="@id/submit_button"
+                android:onClick="@{() -> checkoutFragment.cancelOrder()}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
