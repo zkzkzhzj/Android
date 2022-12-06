@@ -15,15 +15,40 @@
  */
 package com.example.amphibians.network
 
-// TODO: Create a property for the base URL provided in the codelab
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
 
-// TODO: Build the Moshi object with Kotlin adapter factory that Retrofit will be using to parse JSON
+private const val BASE_URL = "https://developer.android.com/courses/pathways/android-basics-kotlin-unit-4-pathway-2/"
+private const val DATA_URL = "android-basics-kotlin-unit-4-pathway-2-project-api.json"
 
-// TODO: Build a Retrofit object with the Moshi converter
+// moshi builder 생성
+val moshi = Moshi
+    .Builder()
+    // json 데이터를 코틀린 객체로 변경
+    .add(KotlinJsonAdapterFactory())
+    .build()
+
+// retrofit builder 생성
+val retrofit = Retrofit.Builder()
+    // moshi converter factory 추가
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    // 기본 Url
+    .baseUrl(BASE_URL)
+    .build()
 
 interface AmphibianApiService {
-    // TODO: Declare a suspended function to get the list of amphibians
+    @GET(DATA_URL)
+    // 코루틴 내부에서 사용하는 메소드 이기 때문에 suspend 키워드 사용
+    suspend fun getamphibains(): List<Amphibian>
 }
 
-// TODO: Create an object that provides a lazy-initialized retrofit service
-
+// 싱글톤 class
+object AmphibianApi {
+    // 호출될 때 retrofit 객체 생성
+    val retrofitService: AmphibianApiService by lazy {
+        retrofit.create(AmphibianApiService::class.java)
+    }
+}
