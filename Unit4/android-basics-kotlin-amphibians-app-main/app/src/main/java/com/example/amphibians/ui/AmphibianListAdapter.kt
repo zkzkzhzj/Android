@@ -32,7 +32,7 @@ class AmphibianListAdapter(val clickListener: AmphibianListener) :
 
     class AmphibianViewHolder(
         var binding: ListViewItemBinding
-        ) : RecyclerView.ViewHolder(binding.root){
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(clickListener: AmphibianListener, amphibian: Amphibian) {
             binding.amphibian = amphibian
             binding.clickListener = clickListener
@@ -49,7 +49,6 @@ class AmphibianListAdapter(val clickListener: AmphibianListener) :
         override fun areContentsTheSame(oldItem: Amphibian, newItem: Amphibian): Boolean {
             return oldItem.type == newItem.type && oldItem.description == newItem.description
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AmphibianViewHolder {

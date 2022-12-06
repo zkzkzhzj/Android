@@ -18,7 +18,7 @@ package com.example.amphibians.ui
 import androidx.lifecycle.ViewModel
 import com.example.amphibians.network.Amphibian
 
-enum class AmphibianApiStatus {LOADING, ERROR, DONE}
+enum class AmphibianApiStatus { LOADING, ERROR, DONE }
 
 class AmphibianViewModel : ViewModel() {
 
