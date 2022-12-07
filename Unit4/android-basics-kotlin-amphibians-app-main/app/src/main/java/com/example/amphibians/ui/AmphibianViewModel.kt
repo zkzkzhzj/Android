@@ -15,24 +15,65 @@
  */
 package com.example.amphibians.ui
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.amphibians.network.Amphibian
+import com.example.amphibians.network.AmphibianApi
+import kotlinx.coroutines.launch
 
+// 상태 클래스
 enum class AmphibianApiStatus { LOADING, ERROR, DONE }
 
 class AmphibianViewModel : ViewModel() {
 
-    // TODO: Create properties to represent MutableLiveData and LiveData for the API status
+    // 현재 상태 저장
+    private val _status = MutableLiveData<AmphibianApiStatus>()
 
-    // TODO: Create properties to represent MutableLiveData and LiveData for a list of amphibian objects
+    val status: LiveData<AmphibianApiStatus>
+        get() = _status
 
-    // TODO: Create properties to represent MutableLiveData and LiveData for a single amphibian object.
-    //  This will be used to display the details of an amphibian when a list item is clicked
+    // 받아온 양서류 리스트 저장
+    private val _amphibianList = MutableLiveData<List<Amphibian>>()
 
-    // TODO: Create a function that gets a list of amphibians from the api service and sets the
-    //  status via a Coroutine
+    val amphibianList: LiveData<List<Amphibian>>
+        get() = _amphibianList
 
+    // 단일 양서류 데이터 저장
+    private val _amphibian = MutableLiveData<Amphibian>()
+
+    val amphibian: LiveData<Amphibian>
+        get() = _amphibian
+
+    init {
+        setAmphibian()
+    }
+
+    // 받아온 데이터 세팅
+    private fun setAmphibian() {
+        // 백그라운드에서 데이터를 가져올 수 있도록 코루틴 사용
+        viewModelScope.launch {
+            // 데이터를 받는 도중이라면 LOADING 세팅
+            _status.value = AmphibianApiStatus.LOADING
+            try {
+                // 데이터 가져오기
+                _amphibianList.value = AmphibianApi.retrofitService.getamphibains()
+
+                // 데이터를 정상적으로 가져왔다면 DONE 세팅
+                _status.value = AmphibianApiStatus.DONE
+            } catch (e: Exception) {
+                // 에러가 발생했을 경우 ERROR 세팅
+                _status.value = AmphibianApiStatus.ERROR
+
+                // 데이터 리스트를 비워준다
+                _amphibianList.value = listOf()
+            }
+        }
+    }
+
+    // 리사이클러 뷰에서 개별 아이템 클릭한 아이템 세팅
     fun onAmphibianClicked(amphibian: Amphibian) {
-        // TODO: Set the amphibian object
+        _amphibian.value = amphibian
     }
 }
