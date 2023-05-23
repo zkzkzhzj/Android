@@ -23,6 +23,7 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.work.Data
+import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -47,7 +48,11 @@ class BlurViewModel(application: Application) : ViewModel() {
     internal fun applyBlur(blurLevel: Int) {
         // add cleanup worker
         var continuation = workManager
-            .beginWith(OneTimeWorkRequest.from(CleanupWorker::class.java))
+            .beginUniqueWork(
+                IMAGE_MANIPULATION_WORK_NAME,
+                ExistingWorkPolicy.REPLACE,
+                OneTimeWorkRequest.from(CleanupWorker::class.java),
+            )
 
         // add level blur to image worker
         for (i in 0 until blurLevel) {
