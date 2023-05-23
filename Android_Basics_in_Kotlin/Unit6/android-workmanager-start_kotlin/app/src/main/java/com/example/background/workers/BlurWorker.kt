@@ -20,6 +20,8 @@ class BlurWorker(context: Context, params: WorkerParameters) : Worker(context, p
 
         makeStatusNotification("Burring image", appContext)
 
+        sleep()
+
         return try {
             if (TextUtils.isEmpty(resourceUri)) {
                 Log.e(TAG, "Invalid input uri")
