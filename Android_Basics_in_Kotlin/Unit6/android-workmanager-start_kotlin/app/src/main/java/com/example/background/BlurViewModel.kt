@@ -105,6 +105,10 @@ class BlurViewModel(application: Application) : ViewModel() {
         outputUri = uriOrNull(outputImageUri)
     }
 
+    internal fun cancelWork() {
+        workManager.cancelUniqueWork(IMAGE_MANIPULATION_WORK_NAME)
+    }
+
     private fun createInputDataForUri(): Data {
         val builder = Data.Builder()
         imageUri?.let {
